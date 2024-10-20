@@ -4,16 +4,21 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js",
-    "build":"webpack"
+    "start": "node index.js",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "cookie-session": "^2.1.0",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.7.2",
     "nodemon": "^3.1.7",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
     "prosemirror-example-setup": "^1.2.3",
     "prosemirror-model": "^1.23.0",
     "prosemirror-schema-basic": "^1.2.3",

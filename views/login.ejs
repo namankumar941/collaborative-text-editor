@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Login</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    
+
+    <div class = "container mt-4">
+      <% if (locals.error) { %>
+        <div class="alert alert-danger" role="alert">
+          <%= locals.error %>
+        </div>     
+      <% } %>
+        <form action="/auth/google" method = "get">          
+          <button type="submit" class="btn btn-primary">login with google</button>
+        </form>
+    </div> 
+
+
+    <%- include('./partials/scripts') %>
+</body>
+</html>
