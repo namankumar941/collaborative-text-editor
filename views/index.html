@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProseMirror Editor</title>
+    <link rel="stylesheet" href="../src/menu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prosemirror-view/1.4.0/style/prosemirror.css">
     <style>
+        
         #editor {
             border: 1px solid #ccc;
+            border-radius: 4px; /* Rounded corners */
             min-height: 200px;
             padding: 10px;
+            background-color: #fff; /* White background for the editor */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            overflow-y: auto; /* Allow scrolling if content overflows */
         }
     </style>
 </head>
 <body>
+    
     <div id="editor"></div>
     <div id="content" style="display:none;">
         <p>Hello, ProseMirror!</p>
