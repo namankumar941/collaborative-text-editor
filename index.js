@@ -15,6 +15,8 @@ const port = 8000;
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
+// Serve static files
+//app.use(express.static(path.join(__dirname, 'public')));
 // import all route
 const userRoute = require("./route/user");
 
@@ -58,6 +60,11 @@ const mainPage = new MainPage();
 
 //get request for main page
 app.get("/", mainPage.viewMainPage.bind(mainPage));
+
+//get request for new file
+app.get("/newFile",(req,res)=>{
+  res.sendFile(path.join(__dirname, 'views/index.html'))
+})
 // get request to log out user
 app.get("/logout", async (req, res) => {
   req.logout((err) => {
