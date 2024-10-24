@@ -13,29 +13,53 @@ const mySchema = new Schema({
 });
 
 // Collaborative authority (mock implementation)
-const authority = {
-  steps: [],
-  doc: DOMParser.fromSchema(mySchema).parse(document.querySelector("#content")),
-  receiveSteps(version, steps, clientIDs) {
-    if (version != this.steps.length) return
-
-    // Apply and accumulate new steps
-    steps.forEach(step => {
-      this.doc = step.apply(this.doc).doc
-      this.steps.push(step)
-      this.stepClientIDs.push(clientID)
-    })
-    // Signal listeners
-    this.onNewSteps.forEach(function(f) { f() })
-  },
-  onNewSteps: [],
-  stepsSince(version) {
-    return {
-      steps: this.steps.slice(version),
-      clientIDs: this.stepClientIDs.slice(version)
-    }
+class Authority {
+  constructor(doc) {
+    this.doc = doc;
+    this.steps = [];
+    this.stepClientIDs = []
+    this.clients = new Set();
   }
-};
+
+  receiveSteps(version, steps, clientID) {
+    if (version !== this.steps.length) return;
+
+    steps.forEach(stepJSON => {
+      const step = Step.fromJSON(mySchema, stepJSON);
+      this.doc = step.apply(this.doc).doc;
+      this.steps.push(step);
+      this.stepClientIDs.push(clientID);
+    });
+
+    this.notifyClients();
+  }
+
+  notifyClients() {
+    const message = JSON.stringify({
+        type: 'update',
+        doc: this.doc.toJSON(),
+        steps: this.steps.map(step => step.toJSON()),  // Convert steps to JSON
+        clientIDs: this.stepClientIDs.slice()
+    });
+    console.log("Sending update message:", message); // Log the message
+
+    this.clients.forEach(client => {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send(message);
+        }
+    });
+}
+
+  addClient(client) {
+    this.clients.add(client);
+  }
+
+  removeClient(client) {
+    this.clients.delete(client);
+  }
+}
+const initialDoc = mySchema.nodeFromJSON({ type: 'doc', content: [{ type: 'paragraph', content: [] }] });
+const authority = new Authority(initialDoc);
 
 function collabEditor(authority, place) {
   let view = new EditorView(place, {

@@ -15,8 +15,6 @@ const port = 8000;
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
-// Serve static files
-//app.use(express.static(path.join(__dirname, 'public')));
 // import all route
 const userRoute = require("./route/user");
 
@@ -53,6 +51,8 @@ class MainPage {
     });
   }
 }
+
+
 //created class instance
 const mainPage = new MainPage();
 
@@ -62,9 +62,11 @@ const mainPage = new MainPage();
 app.get("/", mainPage.viewMainPage.bind(mainPage));
 
 //get request for new file
-app.get("/newFile",(req,res)=>{
-  res.sendFile(path.join(__dirname, 'views/index.html'))
-})
+app.get("/newFile", (req, res) => {
+  // Serve static files
+  app.use(express.static("public"));
+  res.sendFile(path.join(__dirname, "public/index.html"));
+});
 // get request to log out user
 app.get("/logout", async (req, res) => {
   req.logout((err) => {
