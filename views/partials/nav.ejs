@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" >
+      collab-Edit</a>
+    
+    <% if (!locals.user) { %>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>          
+        </div> 
+        <div class="navbar-nav">
+          <a class="nav-link" href="/user/login">Login</a>
+        </div>
+      </div>     
+    <% } else { %>
+      <div class="navbar-nav">
+        <a >  <%= user.userName %>  </a>          
+      </div> 
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>          
+        </div> 
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/myFiles">My files</a>          
+        </div> 
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/newFile"> New File</a>          
+        </div> 
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/logout">  Logout  </a>          
+        </div> 
+      
+    </div>
+    <% } %>
+    
+     
+    
+  </div>
+</nav>

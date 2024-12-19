@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Login</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <div class = "container mt-4">
+        <% if (locals.error) { %>
+          <div class="alert alert-danger" role="alert">
+            <%= locals.error %>
+          </div>     
+        <% } %>
+
+    <div class="container mt-3" >
+        <form action="/add/<%= docId %>" method = "post" >
+            <div class="mb-3">
+                <label for="email" class="form-label"></label>
+                <input type="text"
+                placeholder="example@google.com" 
+                required
+                class="form-control" 
+                id="email" 
+                name="email" 
+                aria-describedby="email">
+            </div>
+
+            <div class="mb-3">
+                <button class="btn btn-primary">Submit</button>
+             </div>
+
+        </form>
+    </div>
+
+
+    <%- include('./partials/scripts') %>
+</body>
+</html>

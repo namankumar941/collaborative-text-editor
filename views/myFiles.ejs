@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Home</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <% if (!locals.docs[0]) { %>
+        <div class="alert alert-danger" role="alert"><%=" NO DOCUMENT" %></div>
+    <% } %>
+    <% if (locals.docs[0]) { %>
+        <% docs.forEach(doc => { %>
+            <div class="col">
+                <div class="card col" style="width: 18rem;">
+                    <a class="nav-link " href="/myFiles/<%= doc.docId %>" role="button"  aria-expanded="false">
+                        <p> <%= doc.name %></p>   
+                      </a>                                        
+                  </div>
+                </div>
+         
+        <% }) %>     
+     <% } %>
+    <%- include('./partials/scripts') %>
+</body>
+</html>
