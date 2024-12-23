@@ -1,4 +1,8 @@
 # Real-Time Collaborative Text Editor
+
+
+**Video showcasing the project :-** [Watch the video](https://github.com/namankumar941/collaborative-text-editor/raw/refs/heads/master/collab.mp4)
+
 This is a web-based collaborative application that providing seamless and synchronous document editing by multiple users in real-time. It utilises web sockets for live updates, Redis for managing session states and message queues, and MongoDB for persistent data storage.
 
 # Purpose of This Project
