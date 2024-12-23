@@ -11,6 +11,9 @@ const uuid = require("uuid");
 //get request to add editor
 router.get("/:docId", (req, res) => {
   return res.render("addEditor",{
+    user: {
+      userName: req.user.name,
+    },
     docId:req.params.docId
   });
 });
