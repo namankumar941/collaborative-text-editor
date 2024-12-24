@@ -3,9 +3,9 @@
 
 **Video and image showcasing the project :-**
 
-[Watch the video](https://1drv.ms/v/s!Av10f2BI9V6ZmUeSwDLL-QUVgYbn)
+[Watch the video](https://1drv.ms/v/s!Av10f2BI9V6ZmUtPmykkbuzDdF2s)
 
- [Image](https://1drv.ms/i/s!Av10f2BI9V6ZmUjQcDHaGE-IvPa8)
+![Local Image](collab.png)
 
 This is a web-based collaborative application that providing seamless and synchronous document editing by multiple users in real-time. It utilises web sockets for live updates, Redis for managing session states and message queues, and MongoDB for persistent data storage.
 
